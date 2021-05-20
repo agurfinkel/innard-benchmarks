@@ -1,0 +1,166 @@
+MODULE main
+
+VAR
+  in0 : boolean;
+  in1 : boolean;
+  in2 : boolean;
+  in3 : boolean;
+  in4 : boolean;
+  in5 : boolean;
+  in6 : boolean;
+  in7 : boolean;
+  in8 : boolean;
+  in9 : boolean;
+  in10 : boolean;
+  in11 : boolean;
+  in12 : boolean;
+  in13 : boolean;
+  in14 : boolean;
+  in15 : boolean;
+
+
+  v0 : boolean;
+  v1 : boolean;
+  v2 : boolean;
+  v3 : boolean;
+  v4 : boolean;
+  v5 : boolean;
+  v6 : boolean;
+  v7 : boolean;
+  v8 : boolean;
+  v9 : boolean;
+  v10 : boolean;
+  v11 : boolean;
+  v12 : boolean;
+  v13 : boolean;
+  v14 : boolean;
+  v15 : boolean;
+
+
+  guard : boolean;
+
+DEFINE
+    tmp0 := (v0 & !v1) | (!v0 & v1); 
+    tmp1 := (tmp0 & !v2) | (!tmp0 & v2); 
+    tmp2 := (tmp1 & !v3) | (!tmp1 & v3); 
+    tmp3 := (tmp2 & !v4) | (!tmp2 & v4); 
+    tmp4 := (tmp3 & !v5) | (!tmp3 & v5); 
+    tmp5 := (tmp4 & !v6) | (!tmp4 & v6); 
+    tmp6 := (tmp5 & !v7) | (!tmp5 & v7); 
+    tmp7 := (tmp6 & !v8) | (!tmp6 & v8); 
+    tmp8 := (tmp7 & !v9) | (!tmp7 & v9); 
+    tmp9 := (tmp8 & !v10) | (!tmp8 & v10); 
+    tmp10 := (tmp9 & !v11) | (!tmp9 & v11); 
+    tmp11 := (tmp10 & !v12) | (!tmp10 & v12); 
+    tmp12 := (tmp11 & !v13) | (!tmp11 & v13); 
+    tmp13 := (tmp12 & !v14) | (!tmp12 & v14); 
+    tmp14 := (tmp13 & !v15) | (!tmp13 & v15); 
+
+    p_out := tmp14;
+
+ASSIGN
+
+    init(guard) := TRUE;
+    next(guard) := case
+        p_out : FALSE;
+        TRUE : TRUE;
+    esac;
+
+    init(v0) := FALSE;
+    next(v0) := case
+        p_out : v0;
+        TRUE : in0;
+    esac;
+
+    init(v1) := FALSE;
+    next(v1) := case
+        p_out : v1;
+        TRUE : in1;
+    esac;
+
+    init(v2) := FALSE;
+    next(v2) := case
+        p_out : v2;
+        TRUE : in2;
+    esac;
+
+    init(v3) := FALSE;
+    next(v3) := case
+        p_out : v3;
+        TRUE : in3;
+    esac;
+
+    init(v4) := FALSE;
+    next(v4) := case
+        p_out : v4;
+        TRUE : in4;
+    esac;
+
+    init(v5) := FALSE;
+    next(v5) := case
+        p_out : v5;
+        TRUE : in5;
+    esac;
+
+    init(v6) := FALSE;
+    next(v6) := case
+        p_out : v6;
+        TRUE : in6;
+    esac;
+
+    init(v7) := FALSE;
+    next(v7) := case
+        p_out : v7;
+        TRUE : in7;
+    esac;
+
+    init(v8) := FALSE;
+    next(v8) := case
+        p_out : v8;
+        TRUE : in8;
+    esac;
+
+    init(v9) := FALSE;
+    next(v9) := case
+        p_out : v9;
+        TRUE : in9;
+    esac;
+
+    init(v10) := FALSE;
+    next(v10) := case
+        p_out : v10;
+        TRUE : in10;
+    esac;
+
+    init(v11) := FALSE;
+    next(v11) := case
+        p_out : v11;
+        TRUE : in11;
+    esac;
+
+    init(v12) := FALSE;
+    next(v12) := case
+        p_out : v12;
+        TRUE : in12;
+    esac;
+
+    init(v13) := FALSE;
+    next(v13) := case
+        p_out : v13;
+        TRUE : in13;
+    esac;
+
+    init(v14) := FALSE;
+    next(v14) := case
+        p_out : v14;
+        TRUE : in14;
+    esac;
+
+    init(v15) := FALSE;
+    next(v15) := case
+        p_out : v15;
+        TRUE : in15;
+    esac;
+
+SPEC
+  AG(guard | p_out)
