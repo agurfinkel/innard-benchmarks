@@ -1,0 +1,68 @@
+
+vunit retimed_xor_16
+{
+    var i0, i1, i2, i3, i4, i5, i6, i7, i8, i9, i10, i11, i12, i13, i14, i15 : boolean;
+
+    /* "ORIGINAL" */
+
+    var y0, y1, y2, y3, y4, y5, y6, y7, y8, y9, y10, y11, y12, y13, y14, y15 : boolean;
+
+    assign init(y0)  := false;
+    assign init(y1)  := false;
+    assign init(y2)  := false;
+    assign init(y3)  := false;
+    assign init(y4)  := false;
+    assign init(y5)  := false;
+    assign init(y6)  := false;
+    assign init(y7)  := false;
+    assign init(y8)  := false;
+    assign init(y9)  := false;
+    assign init(y10) := false;
+    assign init(y11) := false;
+    assign init(y12) := false;
+    assign init(y13) := false;
+    assign init(y14) := false;
+    assign init(y15) := false;
+
+    assign next(y0)  := i0;
+    assign next(y1)  := i1;
+    assign next(y2)  := i2;
+    assign next(y3)  := i3;
+    assign next(y4)  := i4;
+    assign next(y5)  := i5;
+    assign next(y6)  := i6;
+    assign next(y7)  := i7;
+    assign next(y8)  := i8;
+    assign next(y9)  := i9;
+    assign next(y10) := i10;
+    assign next(y11) := i11;
+    assign next(y12) := i12;
+    assign next(y13) := i13;
+    assign next(y14) := i14;
+    assign next(y15) := i15;
+
+    /* ^ means XOR */
+    define zz := y0 ^ y1 ^ y2 ^ y3 ^ y4 ^ y5 ^ y6 ^ y7 ^ y8 ^ y9 ^ y10 ^ y11 ^ y12 ^ y13 ^ y14 ^ y15;
+
+
+    /* "RETIMED" */
+    define uu := i0 ^ i1 ^ i2 ^ i3 ^ i4 ^ i5 ^ i6 ^ i7 ^ i8 ^ i9 ^ i10 ^ i11 ^ i12 ^ i13 ^ i14 ^ i15;
+
+    var ww : boolean;
+    assign init(ww) := false;
+    assign next(ww) := uu;
+
+    define eq := (zz = ww);
+
+    /* The signal "eq" is inductive, and most IC3 implementations would solve the property immediately */
+    /* assert always(eq); */
+
+    /* Instead, we create a latch eq_latch with next-state-function eq */
+    var eq_latch : boolean;
+    assign init(eq_latch) := true;
+    assign next(eq_latch) := eq;
+
+    /* Now the signal "eq_latch" is not inductive by itself */
+    /* And the signal "eq" is a useful innard */
+    assert always (eq_latch);
+}
