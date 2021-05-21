@@ -1,0 +1,33 @@
+
+vunit parallel_counters_width16
+{
+    var s : 0..65535;
+    var t : 0..65535;
+
+    assign next(s) := case
+        s = 65535 : 0;
+        else : s+1;
+    esac;
+
+    assign next(t) := case
+        t = 65535 : 0;
+        else : t+1;
+    esac;
+
+    define eq := (s = t);
+
+    /* Assumption is only on the initial behavior */
+    assume !eq;
+
+    /* The signal "eq" is inductive, and most IC3 implementations would solve the property immediately */
+    /* assert never(eq); */
+
+    /* Instead, we create a latch eq_latch with next-state-function eq */
+    var eq_latch : boolean;
+    assign init(eq_latch) := false;
+    assign next(eq_latch) := eq;
+
+    /* Now the signal "eq_latch" is not inductive by itself */
+    /* And the signal "eq" is a useful innard */
+    assert never (eq_latch);
+}
