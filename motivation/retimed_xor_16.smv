@@ -1,0 +1,89 @@
+MODULE main
+VAR
+  i0 : boolean;
+  i1 : boolean;
+  i2 : boolean;
+  i3 : boolean;
+  i4 : boolean;
+  i5 : boolean;
+  i6 : boolean;
+  i7 : boolean;
+  i8 : boolean;
+  i9 : boolean;
+  i10: boolean;
+  i11: boolean;
+  i12: boolean;
+  i13: boolean;
+  i14: boolean;
+  i15: boolean;
+
+  L0 : boolean;
+  L1 : boolean;
+  L2 : boolean;
+  L3 : boolean;
+  L4 : boolean;
+  L5 : boolean;
+  L6 : boolean;
+  L7 : boolean;
+  L8 : boolean;
+  L9 : boolean;
+  L10 : boolean;
+  L11 : boolean;
+  L12 : boolean;
+  L13 : boolean;
+  L14 : boolean;
+  L15 : boolean;
+  
+  W : boolean;
+  P : boolean;
+  
+DEFINE
+  parity := L0 xor L1 xor L2 xor L3 xor L4 xor L5 xor L6 xor L7 xor L8 xor L9 xor L10 xor L11 xor L12 xor L13 xor L14 xor L15;
+  i_parity := i0 xor i1 xor i2 xor i3 xor i4 xor i5 xor i6 xor i7 xor i8 xor i9 xor i10 xor i11 xor i12 xor i13 xor i14 xor i15;
+  
+  Eql := parity <-> W;
+
+ASSIGN
+
+  init(L0) := FALSE;
+  next(L0) := i0;
+  init(L1) := FALSE;
+  next(L1) := i1;
+  init(L2) := FALSE;
+  next(L2) := i2;
+  init(L3) := FALSE;
+  next(L3) := i3;
+  init(L4) := FALSE;
+  next(L4) := i4;
+  init(L5) := FALSE;
+  next(L5) := i5;
+  init(L6) := FALSE;
+  next(L6) := i6;
+  init(L7) := FALSE;
+  next(L7) := i7;
+  init(L8) := FALSE;
+  next(L8) := i8;
+  init(L9) := FALSE;
+  next(L9) := i9;
+  init(L10) := FALSE;
+  next(L10) := i10;  
+  init(L11) := FALSE;
+  next(L11) := i11;
+  init(L12) := FALSE;
+  next(L12) := i12;
+  init(L13) := FALSE;
+  next(L13) := i13;
+  init(L14) := FALSE;
+  next(L14) := i14;
+  init(L15) := FALSE;
+  next(L15) := i15;
+  
+  init(W) := FALSE;
+  next(W) := i_parity;
+  
+  init(P) := TRUE;
+  next(P) := Eql;
+  
+SPEC
+  AG P;
+  
